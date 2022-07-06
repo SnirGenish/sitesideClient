@@ -1,0 +1,17 @@
+#NavLanding {
+  padding: 1% 2%;
+}
+#LandingLogoText {
+  font-size: 1.3rem;
+}
+#NavLandingUl {
+  gap: 10%;
+}
+#NavLandingUl li {
+  font-size: 30px;
+  white-space: nowrap;
+}
+
+#NavLandingSocial ul {
+  gap: 2%;
+}

@@ -1,0 +1,23 @@
+#MainLandingText {
+  padding: 10%;
+}
+#MainLandingText h1 {
+  font-size: 2rem;
+}
+
+#MainLandingImg {
+  background-position: center !important;
+  background-size: cover !important;
+  background-repeat: no-repeat !important;
+}
+#LandingSocialMobile {
+  display: flex;
+  padding: 2%;
+  justify-content: center;
+  width: 100%;
+  position: fixed;
+  bottom: 0px;
+}
+#LandingSocialMobilePlaceHolder {
+  height: 10%;
+}
