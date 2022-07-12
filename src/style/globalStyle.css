@@ -2,9 +2,12 @@
   padding: 0px;
   margin: 0px;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 html {
   font-size: 45px;
+  caret-color: transparent !important;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
 ul {
   list-style: none;
@@ -15,6 +18,9 @@ a {
 /* classes */
 /* classes */
 /* classes */
+.tCenter {
+  text-align: center;
+}
 .sprade {
   height: 100%;
   width: 100%;
@@ -23,9 +29,19 @@ a {
   height: 50%;
   width: 100%;
 }
+.mobilePage {
+  height: 100%;
+  width: 100%;
+  position: relative;
+  padding-top: 22%;
+}
+.tWidth {
+  width: 100%;
+}
 .page {
   height: 100%;
   width: 100%;
+  position: relative;
 }
 .centerText {
   text-align: center;
@@ -66,8 +82,112 @@ a {
 .relative {
   position: relative;
 }
+.fixed {
+  position: fixed;
+  top: 0px;
+}
 @media (max-width: 768px) {
   html {
-    font-size: 25px;
+    font-size: 20px;
   }
+}
+@media (max-width: 1500px) {
+  html {
+    font-size: 42px;
+  }
+}
+@media (max-width: 1300px) {
+  html {
+    font-size: 38px;
+  }
+}
+@media (max-width: 1100px) {
+  html {
+    font-size: 35px;
+  }
+}
+/* buttons */
+/* buttons */
+/* buttons */
+/* buttons */
+.linkNav {
+  margin-top: 3%;
+  background: none;
+  border: 0.1rem solid #c3bad5;
+  color: #c3bad5;
+  padding: 0.1rem 0.6rem;
+  text-align: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.2);
+  transition: 0.3s;
+  border-radius: 0.2rem;
+}
+
+.linkNav:hover {
+  background: #c3bad5;
+  color: #fffff0;
+}
+.submitBtn {
+  border: 3px solid #c3bad5;
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: #c3bad5;
+  transition: 0.5s;
+  background: none;
+}
+
+.submitBtnFull {
+  background-color: #8860d0;
+  transition: 0.5s;
+  border: 3px solid #8860d0;
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+.settingBtn {
+  background-color: #8ab7c7;
+  border: none;
+  width: 100%;
+  height: 50px;
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: #fff;
+  transition: 0.3s;
+}
+.settingBtn:hover {
+  background-color: #6eaec6;
+}
+.badBtn {
+  border: solid 4px #f99b9b;
+  background: none;
+  width: 100%;
+  height: 50px;
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: #f99b9b;
+  transition: 0.3s;
+}
+.badBtn:hover {
+  border: solid 4px #f99b9b;
+  background: #f99b9b;
+  width: 100%;
+  height: 50px;
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+.createBtn {
+  background-color: #8ab7c7;
+  border: none;
+  width: 30%;
+  height: 50px;
+  font-size: 0.5rem;
+  font-weight: bold;
+  color: #fff;
+  transition: 0.3s;
+}
+.createBtn:hover {
+  background-color: #6eaec6;
 }

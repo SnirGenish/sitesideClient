@@ -1,9 +1,8 @@
 import { isMobile } from "react-device-detect";
-import { testData } from "../../../../test-data/test-data";
+import LandingBackBtn from "../../components/LandingBackBtn/LandingBackBtn";
 import NavLandingSocial from "../../components/LandingSocial/LandingSocial";
 import NavLanding from "../../components/NavLanding/NavLanding";
-const LandingAboutPage = () => {
-  const data = testData;
+const LandingAboutPage = ({ data }) => {
   if (isMobile) {
     return (
       <div
@@ -21,6 +20,7 @@ const LandingAboutPage = () => {
               <h1 style={{ color: data.color[1] }}>
                 {data.aboutContent.title}
               </h1>
+              <LandingBackBtn data={data} />
 
               <p style={{ color: data.color[0] }}>{data.aboutContent.text}</p>
             </div>
@@ -42,11 +42,7 @@ const LandingAboutPage = () => {
         className="page col"
         id="LandingHomePageDesk"
       >
-        <NavLanding
-          colorsData={data.color}
-          LogoData={data.logo}
-          socialData={data.Social}
-        />
+        <NavLanding data={data} />
         <main className="row sprade" id="MainLanding">
           <div className="sprade">
             <div className="centerText sprade" id="MainLandingText">

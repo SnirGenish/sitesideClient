@@ -1,0 +1,156 @@
+.br {
+  overflow: hidden;
+  min-height: 100vh;
+  width: 100%;
+  height: 100%;
+  background-color: #84ceeba0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: -10;
+  box-shadow: inset 0px 0px 1000px 4px rgba(255, 255, 255, 0.303);
+}
+.purple {
+  position: absolute;
+  z-index: -8;
+  box-shadow: 0px 0px 5000px 250px rgba(202, 177, 255, 0.389);
+  width: 20%;
+}
+.purple2 {
+  position: absolute;
+  z-index: -8;
+  box-shadow: 0px 0px 5000px 250px rgba(202, 177, 255, 0.389);
+  width: 20%;
+  right: 0px;
+  bottom: 0px;
+}
+@media (max-width: 768px) {
+  .purple {
+    box-shadow: 0px 0px 5000px 130px rgba(202, 177, 255, 0.389);
+  }
+  .purple2 {
+    box-shadow: 0px 0px 5000px 130px rgba(202, 177, 255, 0.389);
+  }
+}
+
+@keyframes dd {
+  0% {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.d {
+  animation: dd 8s infinite;
+  position: absolute;
+  background: rgba(255, 255, 255, 0);
+  background: radial-gradient(
+    circle,
+    #ffffff78 20%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(0.1);
+}
+.br::after {
+  content: "";
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.d1 {
+  width: 100px;
+  height: 100px;
+}
+.d2 {
+  width: 130px;
+  height: 130px;
+}
+.d3 {
+  width: 170px;
+  height: 170px;
+}
+.d4 {
+  width: 190px;
+  height: 190px;
+}
+.dot1 {
+  animation-delay: 7.8s;
+  left: 2%;
+  top: 9%;
+}
+.dot2 {
+  animation-delay: 2s;
+  left: 40%;
+  top: 36%;
+}
+.dot3 {
+  animation-delay: 7.8s;
+  left: 13%;
+  top: 73%;
+}
+.dot4 {
+  animation-delay: 5.1s;
+  left: 78%;
+  top: 45%;
+}
+.dot5 {
+  animation-delay: 2.3s;
+  left: 11%;
+  top: 78%;
+}
+.dot6 {
+  animation-delay: 13.3s;
+  left: 23%;
+  top: 56%;
+}
+.dot7 {
+  animation-delay: 3.4s;
+  left: 43%;
+  top: 1%;
+}
+.dot8 {
+  animation-delay: 17.1s;
+  left: 98%;
+  top: 54%;
+}
+.dot9 {
+  animation-delay: 19.2s;
+  left: 34%;
+  top: 42%;
+}
+.dot10 {
+  animation-delay: 22.5s;
+  left: 65%;
+  top: 26%;
+}
+.dot11 {
+  animation-delay: 27.8s;
+  left: 63%;
+  top: 48%;
+}
+.dot12 {
+  animation-delay: 32.1s;
+  left: 74%;
+  top: 53%;
+}
+.dot13 {
+  left: 12%;
+  top: 45%;
+}
+.dot14 {
+  left: 50%;
+  top: 90%;
+}
+.dot15 {
+  left: 79%;
+  top: 7%;
+}

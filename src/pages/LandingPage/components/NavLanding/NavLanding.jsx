@@ -1,26 +1,28 @@
 import "./NavLanding.css";
 import LandingLogo from "../LandongLogo/LandingLogo";
 import NavLandingSocial from "../LandingSocial/LandingSocial";
-const NavLanding = (props) => {
+import { Link } from "react-router-dom";
+const NavLanding = ({ data }) => {
   return (
     <nav
-      style={{ backgroundColor: props.colorsData[4] }}
+      style={{ backgroundColor: data.color[4] }}
       className="row spaceBetween alignCenter"
       id="NavLanding"
     >
-      <LandingLogo LogoData={props.LogoData} colorData={props.colorsData} />
-      <ul
-        style={{ color: props.colorsData[0] }}
-        id="NavLandingUl"
-        className="row"
-      >
-        <li>About</li>
-        <li>Contect us</li>
+      <LandingLogo LogoData={data.logo} colorData={data.color} />
+      <ul style={{ color: data.color[0] }} id="NavLandingUl" className="row">
+        <Link to={`/${data.siteInfo.userName}/${data.siteInfo.title}/about`}>
+          <li>About</li>
+        </Link>
+        <Link
+          to={`/${data.siteInfo.userName}/${data.siteInfo.title}/contectUs`}
+        >
+          <li>Contect us</li>
+        </Link>
       </ul>
-      <NavLandingSocial
-        colorsData={props.colorsData}
-        socialData={props.socialData}
-      />
+      <div className="cont">
+        <NavLandingSocial colorsData={data.color} socialData={data.Social} />
+      </div>
     </nav>
   );
 };

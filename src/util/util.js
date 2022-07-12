@@ -11,4 +11,3 @@ export const mappingColors = (color) => {
     tint(tint(tint(tint(color, 0.5), 0.5), 0.5), 0.5),
   ];
 };
-console.log(mappingColors("#81f542"));

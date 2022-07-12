@@ -1,0 +1,35 @@
+#lightSaber {
+  height: 50vh;
+  opacity: 0.8;
+  transition: 0.4s;
+  transform: translateX(13%);
+}
+#lightSaberMobile {
+  width: 70%;
+  opacity: 0.8;
+  transition: 0.4s;
+  transform: translateX(13%);
+  z-index: -1;
+}
+#lightSaber:hover {
+  opacity: 1;
+}
+.mainMain {
+  text-align: center;
+  padding: 3%;
+}
+
+.mainMain h1 {
+  font-size: 1.4rem;
+  color: #8860d0;
+}
+
+.mainMain h3 {
+  color: #5680e9;
+  font-size: 1rem;
+}
+.mainMain p {
+  width: 90%;
+  font-size: 1rem;
+  color: #594480;
+}
