@@ -2,28 +2,37 @@ import BackGround from "../../components/BackGround/BackGround";
 import "./SignUp.css";
 import { isMobile } from "react-device-detect";
 import Logo from "../../components/Logo/Logo";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
+import { addUser } from "../../../../api/userApi";
 const SignUp = () => {
+  const navigate = useNavigate();
+
   const [isFull, setIsFull] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [name, setName] = useState("");
+  const [profilePic, setprofilePic] = useState("");
+  const [userName, setuserName] = useState("");
   useEffect(() => {
-    if (email.length && password.length && password2.length && name.length) {
+    if (
+      email.length &&
+      password.length &&
+      password2.length &&
+      userName.length
+    ) {
       setIsFull(true);
     }
     if (
       !email.length ||
       !password.length ||
       !password2.length ||
-      !name.length
+      !userName.length
     ) {
       setIsFull(false);
     }
-  }, [email, password, password2, name]);
+  }, [email, password, password2, userName]);
   return (
     <div className="page">
       <div id="SignUp" className="page  column">
@@ -42,14 +51,14 @@ const SignUp = () => {
             <Link className="tWidth" to="/">
               <Logo isFull={true} />
             </Link>
-            <form action="SignUp" className="col sprade justifyCenter">
+            <div action="SignUp" className="col sprade justifyCenter">
               <input
                 type="text"
-                placeholder="username"
+                placeholder="user name"
                 id="username"
                 name="username"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
+                value={userName}
+                onChange={(e) => setuserName(e.target.value)}
               />
               <input
                 type="text"
@@ -58,6 +67,14 @@ const SignUp = () => {
                 name="Email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
+              />
+              <input
+                type="text"
+                placeholder="profilePic Picture"
+                id="profilePic"
+                name="profilePic"
+                value={profilePic}
+                onChange={(e) => setprofilePic(e.target.value)}
               />
               <input
                 type="password"
@@ -75,13 +92,21 @@ const SignUp = () => {
                 value={password2}
                 onChange={(e) => setPassword2(e.target.value)}
               />
-              <button className={isFull ? "submitBtnFull" : "submitBtn"}>
+              <button
+                onClick={async () => {
+                  if (password === password2) {
+                    await addUser({ email, password, userName, profilePic });
+                    navigate("/");
+                  }
+                }}
+                className={isFull ? "submitBtnFull" : "submitBtn"}
+              >
                 Sign Up{" "}
               </button>
               <p>
                 already on Siteside? <Link to="/logIn">Log In</Link>
               </p>
-            </form>
+            </div>
           </div>
         </main>
       </div>

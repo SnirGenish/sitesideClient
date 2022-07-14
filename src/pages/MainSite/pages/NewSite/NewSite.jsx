@@ -5,12 +5,16 @@ import { isMobile } from "react-device-detect";
 import { useState } from "react";
 import { mappingColors } from "../../../../util/util";
 import { useEffect } from "react";
+import { addSite, getSite } from "../../../../api/siteApi";
+import { useNavigate } from "react-router-dom";
 const NewSite = () => {
+  const navigate = useNavigate();
   const [title, setTitle] = useState("");
+  const [Email, setEmail] = useState("");
   const [isText, setIsText] = useState(false);
   const [logoText, setLogoText] = useState("");
   const [logoURL, setLogoURL] = useState("");
-  const [font, setFont] = useState("");
+  const [font, setFont] = useState("caliberi");
   const [color, setColor] = useState("#000000");
   const [colorArray, setColorArray] = useState([]);
   const [HomePageHeadline, setHomePageHeadline] = useState("");
@@ -25,9 +29,42 @@ const NewSite = () => {
   const [SocialLink3, setSocialLink3] = useState("");
   const [SocialLink4, setSocialLink4] = useState("");
   const [SocialLink5, setSocialLink5] = useState("");
+
   useEffect(() => {
     setColorArray(mappingColors(color));
   }, [color]);
+
+  const newSite = {
+    title,
+    Email,
+    logo: {
+      isText,
+      text: logoText,
+      url: logoURL,
+    },
+    homeContent: {
+      title: HomePageHeadline,
+      subTitle: HomePageSubHeadline,
+      text: HomePageText,
+      buttonLabel: buttonText,
+      imgUrl: HomePageImg,
+    },
+    aboutContent: {
+      title: AboutPageHeadline,
+      text: AboutPageText,
+    },
+    Social: {
+      links: [
+        SocialLink1,
+        SocialLink2,
+        SocialLink3,
+        SocialLink4,
+        SocialLink5,
+      ].filter((link) => link !== ""),
+    },
+    color: colorArray,
+    font,
+  };
   return (
     <div className={isMobile ? "mobilePage" : "page"}>
       <div id="NewSite" className="page col">
@@ -35,13 +72,25 @@ const NewSite = () => {
         <main className="col alignCenter sprade">
           <div id="newSiteForm">
             <h1>Create a new site</h1>
+            <h4>title</h4>
+            <p></p>
             <input
               type="text"
               placeholder="title"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
             />
+            <h4>Email</h4>
+            <p></p>
+
+            <input
+              type="text"
+              placeholder="Email"
+              value={Email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
             <h4>Logo</h4>
+            <p></p>
             <div className="switch">
               <div
                 className={
@@ -154,6 +203,8 @@ const NewSite = () => {
               </div>
             </div>
             <h4>Home Page</h4>
+            <p></p>
+
             <input
               type="text"
               placeholder="Headline"
@@ -176,6 +227,7 @@ const NewSite = () => {
               onChange={(e) => setHomePageText(e.target.value)}
             ></textarea>
             <h4>Image</h4>
+            <p></p>
             <input
               type="text"
               placeholder="Image URL"
@@ -207,6 +259,7 @@ const NewSite = () => {
               </div>
             </div>
             <h4>About Page</h4>
+            <p></p>
             <input
               type="text"
               placeholder="Headline"
@@ -223,6 +276,7 @@ const NewSite = () => {
               onChange={(e) => setAboutPageText(e.target.value)}
             ></textarea>
             <h4>Social Links</h4>
+            <p></p>
             <input
               type="text"
               placeholder="Link"
@@ -253,7 +307,33 @@ const NewSite = () => {
               value={SocialLink5}
               onChange={(e) => setSocialLink5(e.target.value)}
             />
-            <button className="createBtn">Create my site</button>
+            <button
+              onClick={async () => {
+                const check = await getSite(
+                  title,
+                  JSON.parse(localStorage.getItem("userData")).userName
+                );
+                console.log(check);
+                if (check.status !== 200) {
+                  await addSite(newSite).then((res) => {
+                    console.log(res);
+                    if (res.response) {
+                      const errors = res.response.data.errors;
+                      Object.entries(errors).map(([key, value]) => {
+                        alert(value.message);
+                      });
+                    } else {
+                      alert("Site added successfully");
+                    }
+                  });
+                } else {
+                  alert("Site already exists");
+                }
+              }}
+              className="createBtn"
+            >
+              Create my site
+            </button>
           </div>
         </main>
       </div>

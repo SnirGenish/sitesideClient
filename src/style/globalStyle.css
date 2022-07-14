@@ -9,6 +9,9 @@ html {
   caret-color: transparent !important;
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
 }
+textarea {
+  caret-color: blueviolet !important;
+}
 ul {
   list-style: none;
 }
@@ -155,6 +158,9 @@ a {
   font-weight: bold;
   color: #fff;
   transition: 0.3s;
+}
+.settingBtn a {
+  color: #fff;
 }
 .settingBtn:hover {
   background-color: #6eaec6;

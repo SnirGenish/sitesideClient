@@ -1,0 +1,38 @@
+#UserNavLogged p {
+  white-space: nowrap;
+  font-size: 0.8rem;
+  color: #5680e9;
+}
+#UserNavLogged:hover {
+  transform: scale(1.05);
+}
+#UserNavLogged {
+  transition: 0.2s;
+  padding: 1%;
+  height: 1.5rem;
+  width: 100%;
+  align-items: center;
+
+  background-color: rgba(255, 255, 255, 0.401);
+  backdrop-filter: blur(20px) saturate(160%) contrast(45%) brightness(140%);
+  -webkit-backdrop-filter: blur(20px) saturate(160%) contrast(45%)
+    brightness(140%);
+  gap: 3%;
+}
+#navProfilePicture {
+  width: 5vmin;
+  height: 4vmin;
+  border-radius: 50%;
+}
+#navProfilePicture img {
+  border-radius: 50%;
+  width: 100%;
+  object-fit: cover;
+  height: 100%;
+}
+@media screen and (max-width: 768px) {
+  #navProfilePicture {
+    width: 10vmin;
+    height: 11vmin;
+  }
+}

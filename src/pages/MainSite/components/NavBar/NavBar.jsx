@@ -29,7 +29,7 @@ const NavBar = () => {
             id="mobileNavSlideInner"
             className={isOpen ? null : "mobileNavSlide"}
           >
-            <UserNav isLoged={false} />
+            <UserNav />
             <div id="NavBarMenuMobile">
               <ul className="col">
                 <li>
@@ -67,7 +67,7 @@ const NavBar = () => {
           </ul>
         </div>
         <div id="userNav">
-          <UserNav isLoged={false} />
+          <UserNav />
         </div>
       </nav>
     );

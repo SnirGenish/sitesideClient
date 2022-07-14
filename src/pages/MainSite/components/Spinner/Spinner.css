@@ -1,0 +1,28 @@
+#Spinner img {
+  width: 20%;
+  animation: breath 2s infinite;
+}
+#Spinner {
+  height: 70vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@keyframes breath {
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
+}
+@media screen and (max-width: 768px) {
+  #Spinner img {
+    width: 40%;
+  }
+}

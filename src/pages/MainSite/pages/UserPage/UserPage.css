@@ -64,15 +64,22 @@
 }
 .siteLogo {
   height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.siteLogo img {
+  width: 100%;
 }
 .siteName {
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   color: #8fa7e6;
 }
 .siteS p {
   font-size: 0.6rem;
   color: #8fa7e6;
 }
+
 #plus {
   width: 80%;
   align-self: center;
