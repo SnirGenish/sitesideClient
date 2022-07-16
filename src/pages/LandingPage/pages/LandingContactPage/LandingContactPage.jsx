@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react";
+import "./LandingContactPage.css";
 import { isMobile } from "react-device-detect";
 import { getSite } from "../../../../api/siteApi";
 import Spinner from "../../../MainSite/components/Spinner/Spinner";
 import LandingBackBtn from "../../components/LandingBackBtn/LandingBackBtn";
 import NavLandingSocial from "../../components/LandingSocial/LandingSocial";
 import NavLanding from "../../components/NavLanding/NavLanding";
-const LandingAboutPage = () => {
+import LandingButton from "../../components/LandingButton/LandingButton";
+import { Link } from "react-router-dom";
+const LandingContactPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
+  const [Email, setEmail] = useState("");
+  const [Subject, setSubject] = useState("");
+  const [Message, setMessage] = useState("");
   const location = document.URL;
   const userName = location.split("/")[4];
   const siteName = location.split("/")[3];
@@ -37,15 +43,32 @@ const LandingAboutPage = () => {
             <div className="mobileSprade">
               <div
                 style={{ backgroundColor: data.color[6] }}
-                className="centerText"
+                className="tLeft"
                 id="MainLandingText"
               >
-                <h1 style={{ color: data.color[1] }}>
-                  {data.aboutContent.title}
-                </h1>
+                <h1 style={{ color: data.color[1] }}>Contact Us</h1>
+                <h5 style={{ color: data.color[0] }}>Email:</h5>
+                <input
+                  className="landingInput"
+                  type="text"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={Email}
+                />
+                <h5 style={{ color: data.color[0] }}>Subject:</h5>
+                <input
+                  className="landingInput"
+                  type="text"
+                  onChange={(e) => setSubject(e.target.value)}
+                  value={Subject}
+                />
+                <h5 style={{ color: data.color[0] }}>Message:</h5>
+                <textarea
+                  className="landingInput textA"
+                  onChange={(e) => setMessage(e.target.value)}
+                  value={Message}
+                />
+                <LandingButton colorData={data.color} type="send" />
                 <LandingBackBtn data={data} />
-
-                <p style={{ color: data.color[0] }}>{data.aboutContent.text}</p>
               </div>
               <div id="LandingSocialMobilePlaceHolder"></div>
             </div>
@@ -75,11 +98,15 @@ const LandingAboutPage = () => {
           <NavLanding data={data} />
           <main className="row sprade" id="MainLanding">
             <div className="sprade">
-              <div className="centerText sprade" id="MainLandingText">
-                <h1 style={{ color: data.color[1] }}>
-                  {data.aboutContent.title}
-                </h1>
-                <p style={{ color: data.color[0] }}>{data.aboutContent.text}</p>
+              <div className="centerText sprade tLeft" id="MainLandingText">
+                <h1 style={{ color: data.color[1] }}>Contact Us</h1>
+                <h5 style={{ color: data.color[0] }}>Email:</h5>
+                <input className="landingInput" type="text" />
+                <h5 style={{ color: data.color[0] }}>Subject:</h5>
+                <input className="landingInput" type="text" />
+                <h5 style={{ color: data.color[0] }}>Message:</h5>
+                <textarea className="landingInput textA" />
+                <LandingButton colorData={data.color} type="send" />
               </div>
             </div>
           </main>
@@ -88,4 +115,4 @@ const LandingAboutPage = () => {
     }
   }
 };
-export default LandingAboutPage;
+export default LandingContactPage;

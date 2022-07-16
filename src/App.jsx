@@ -9,9 +9,14 @@ import "./style/globalStyle.css";
 import UserPage from "./pages/MainSite/pages/UserPage/UserPage";
 import NewSite from "./pages/MainSite/pages/NewSite/NewSite";
 import LandingAboutPage from "./pages/LandingPage/pages/LandingAboutPage/LandingAboutPage";
+import NewSiteCreated from "./pages/MainSite/pages/NewSiteCreated/NewSiteCreated";
+import { useState } from "react";
+import SiteSettings from "./pages/MainSite/pages/SiteSettings/SiteSettings";
+import LandingContactPage from "./pages/LandingPage/pages/LandingContactPage/LandingContactPage";
 
 const App = () => {
   const loggedIn = localStorage.userData;
+  const [title, setTitle] = useState("");
 
   return (
     <div style={{ minHeight: window.innerHeight }} className="App">
@@ -34,10 +39,28 @@ const App = () => {
           />
           <Route
             path="/newsite"
-            element={!loggedIn ? <Navigate to="/logIn" /> : <NewSite />}
+            element={
+              !loggedIn ? (
+                <Navigate to="/logIn" />
+              ) : (
+                <NewSite setTitle={setTitle} title={title} />
+              )
+            }
+          />
+          <Route
+            path="/newSiteCreated"
+            element={<NewSiteCreated title={title} />}
+          />
+          <Route
+            path="/sitesettings/:title"
+            element={<SiteSettings setTitle={setTitle} />}
           />
           <Route path="/:user/:title/home" element={<LandingHomePage />} />
           <Route path="/:user/:title/About" element={<LandingAboutPage />} />
+          <Route
+            path="/:user/:title/contactUs"
+            element={<LandingContactPage />}
+          />
           <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </BrowserRouter>

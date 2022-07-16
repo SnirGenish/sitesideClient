@@ -27,9 +27,11 @@ const NavBar = () => {
         >
           <div
             id="mobileNavSlideInner"
-            className={isOpen ? null : "mobileNavSlide"}
+            // className={isOpen ? null : "mobileNavSlide"}
           >
-            <UserNav />
+            <div className="userNavTrim">
+              <UserNav />
+            </div>
             <div id="NavBarMenuMobile">
               <ul className="col">
                 <li>
@@ -38,9 +40,9 @@ const NavBar = () => {
                 <li>
                   <Link to="/About">About</Link>
                 </li>
-                <li>
+                {/* <li>
                   <Link to="/ContectUs">Contect Us</Link>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>
@@ -61,9 +63,9 @@ const NavBar = () => {
             <li>
               <Link to="/About">About</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/ContectUs">Contect Us</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
         <div id="userNav">

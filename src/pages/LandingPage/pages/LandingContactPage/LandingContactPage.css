@@ -1,0 +1,18 @@
+.landingInput {
+  width: 100%;
+  height: 50px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 0 10px;
+  font-size: 16px;
+  font-family: "Roboto", sans-serif;
+  color: #333;
+  margin-bottom: 10px;
+}
+.tLeft {
+  text-align: left;
+}
+.textA {
+  height: 20%;
+  resize: none;
+}

@@ -6,73 +6,104 @@ import plus from "../../../../assets/plus.svg";
 import { Link, useNavigate } from "react-router-dom";
 import { getUser, logOut } from "../../../../api/userApi";
 import { useEffect, useState } from "react";
+import Spinner from "../../components/Spinner/Spinner";
 const UserPage = () => {
   const [sites, setSites] = useState([]);
+  const [spinning, setSpinning] = useState(false);
   const navigate = useNavigate();
   const loggedIn = JSON.parse(localStorage.getItem("userData"));
   useEffect(() => {
     const getSites = async () => {
+      setSpinning(true);
       const user = await getUser();
       const mappedsites = await user.sites.map((site) => {
+        setSpinning(false);
         return (
-          <Link
+          <div
+            key={site.id}
             to={`/${loggedIn.userName}/${site.title}/home`}
             className="siteS"
           >
-            <div className="siteLogo">
+            <div
+              className="siteLogo"
+              onClick={() => {
+                navigate(`/${loggedIn.userName}/${site.title}/home`);
+              }}
+            >
               {site.logo.isText ? (
-                <div className="siteLogoText">{site.logo.text}</div>
+                <div
+                  style={{ color: site.color, fontFamily: site.font }}
+                  className="siteLogoText"
+                >
+                  {site.logo.text}
+                </div>
               ) : (
                 <img src={site.logo.url} alt="logo" />
               )}
             </div>
             <div>
-              <div className="siteName">{site.title}</div>
-              <button className="settingBtn">
-                <Link to="/"> settings</Link>
+              <div
+                className="siteName"
+                onClick={() => {
+                  navigate(`/${loggedIn.userName}/${site.title}/home`);
+                }}
+              >
+                {site.title}
+              </div>
+              <button
+                className="settingBtn"
+                onClick={() => {
+                  navigate(`/sitesettings/${site.title}`);
+                }}
+              >
+                settings
               </button>
             </div>
-          </Link>
+          </div>
         );
       });
       setSites(mappedsites);
     };
     getSites();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className={isMobile ? "mobilePage" : "page"}>
       <NavBar />
       <div id="UserPage" className="page col">
-        <main className={isMobile ? "col" : "row"}>
-          <div id="userProfile" className="col alignCenter">
-            <div id="profilePicture">
-              <img alt="rwq" src={loggedIn.profilePic} />
+        {spinning ? (
+          <Spinner />
+        ) : (
+          <main className={isMobile ? "col" : "row"}>
+            <div id="userProfile" className="col alignCenter">
+              <div id="profilePicture">
+                <img alt="rwq" src={loggedIn.profilePic} />
+              </div>
+              <h3>{loggedIn.userName}</h3>
+              <div className="sprade">
+                <button
+                  onClick={async () => {
+                    await logOut();
+                    window.location.reload(false);
+                    return navigate("/");
+                  }}
+                  className="badBtn"
+                >
+                  log out
+                </button>
+              </div>
+            </div>{" "}
+            <div id="userSiteList">
+              {sites}
+              <div className="siteS">
+                <Link to="/newsite">
+                  <img id="plus" src={plus} alt="asdf" />
+                  <p>new site</p>
+                </Link>
+              </div>
             </div>
-            <h3>{loggedIn.userName}</h3>
-            <div className="sprade">
-              <button className="settingBtn">settings</button>
-              <button
-                onClick={async () => {
-                  await logOut();
-                  window.location.reload(false);
-                  return navigate("/");
-                }}
-                className="badBtn"
-              >
-                log out
-              </button>
-            </div>
-          </div>
-          <div id="userSiteList">
-            {sites}
-            <div className="siteS">
-              <Link to="/newsite">
-                <img id="plus" src={plus} alt="asdf" />
-                <p>new site</p>
-              </Link>
-            </div>
-          </div>
-        </main>
+          </main>
+        )}
       </div>
       <BackGround />
     </div>

@@ -6,11 +6,29 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { useEffect } from "react";
 import { logIn } from "../../../../api/userApi";
+import SmallSpinner from "../../components/SmallSpinner/SmallSpinner";
 const LogIn = () => {
   const [isFull, setIsFull] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState(false);
+  const [spinning, setSpinning] = useState(false);
   const navigate = useNavigate();
+
+  const submitting = async () => {
+    if (isFull) {
+      setSpinning(true);
+      await logIn(email, password).then((res) => {
+        if (res) {
+          window.location.reload(false);
+          navigate("/");
+        } else {
+          setError(true);
+        }
+      });
+      setSpinning(false);
+    }
+  };
 
   useEffect(() => {
     if (email.length && password.length) {
@@ -39,6 +57,12 @@ const LogIn = () => {
               <Logo isFull={true} />
             </Link>
             <div action="login" className="col sprade justifyCenter">
+              <p
+                style={{ visibility: error ? "visible" : "hidden" }}
+                className="errorInputMsg"
+              >
+                Wrong email or password
+              </p>
               <input
                 type="text"
                 placeholder="Email"
@@ -53,22 +77,22 @@ const LogIn = () => {
                 id="password"
                 name="password"
                 value={password}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    submitting();
+                  }
+                }}
                 onChange={(e) => setPassword(e.target.value)}
               />
               <button
-                onClick={async () => {
-                  await logIn(email, password).then((res) => {
-                    if (res) {
-                      window.location.reload(false);
-                      navigate("/");
-                    } else {
-                      alert("Wrong email or password");
-                    }
-                  });
-                }}
-                className={isFull ? "submitBtnFull" : "submitBtn"}
+                onClick={submitting}
+                className={
+                  isFull
+                    ? "submitBtnFull row justifyCenter alignCenter"
+                    : "submitBtn"
+                }
               >
-                Log In
+                {spinning ? <SmallSpinner /> : "log in"}
               </button>
               <p>
                 not on Siteside yet? <Link to="/signUp">sign up</Link>

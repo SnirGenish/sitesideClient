@@ -1,7 +1,8 @@
 import axios from "axios";
 export const getUser = async () => {
+  console.log(process.env.REACT_APP_API);
   try {
-    const user = await axios.get("http://192.168.1.152:8000/users/me", {
+    const user = await axios.get(`${process.env.REACT_APP_API}/users/me`, {
       headers: {
         Authorization: `Bearer ${
           JSON.parse(localStorage.getItem("userData")).token
@@ -15,7 +16,7 @@ export const getUser = async () => {
 };
 export const logIn = async (email, password) => {
   try {
-    const user = await axios.post("http://192.168.1.152:8000/users/logIn", {
+    const user = await axios.post(`${process.env.REACT_APP_API}/users/logIn`, {
       email,
       password,
     });
@@ -41,7 +42,7 @@ export const logIn = async (email, password) => {
 export const logOut = async () => {
   try {
     const user = await axios.post(
-      "http://192.168.1.152:8000/users/logOut",
+      `${process.env.REACT_APP_API}/users/logOut`,
       {},
       {
         headers: {
@@ -64,7 +65,7 @@ export const logOut = async () => {
 export const addUser = async (userDetails) => {
   try {
     const user = await axios.post(
-      "http://192.168.1.152:8000/users/",
+      `${process.env.REACT_APP_API}/users/`,
       userDetails
     );
     console.log(user);
@@ -80,6 +81,29 @@ export const addUser = async (userDetails) => {
       );
       return user.data;
     }
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const getUserByName = async (userName) => {
+  try {
+    const user = await axios.get(
+      `${process.env.REACT_APP_API}/users/name/${userName}`
+    );
+
+    return user.data;
+  } catch (err) {
+    console.log(err);
+  }
+};
+export const getUserByEmail = async (userEmail) => {
+  try {
+    const user = await axios.get(
+      `${process.env.REACT_APP_API}/users/email/${userEmail}`
+    );
+
+    return user.data;
   } catch (err) {
     console.log(err);
   }

@@ -11,7 +11,7 @@
 }
 #userSiteList {
   width: 50%;
-  height: 750px;
+  min-height: 750px;
   padding: 1%;
   background-color: rgba(255, 255, 255, 0.214);
   backdrop-filter: blur(20px) saturate(160%) contrast(45%) brightness(140%);
@@ -67,11 +67,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
 }
 .siteLogo img {
   width: 100%;
 }
 .siteName {
+  cursor: pointer;
   font-size: 0.6rem;
   color: #8fa7e6;
 }

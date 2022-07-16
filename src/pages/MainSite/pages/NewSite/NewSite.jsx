@@ -7,9 +7,9 @@ import { mappingColors } from "../../../../util/util";
 import { useEffect } from "react";
 import { addSite, getSite } from "../../../../api/siteApi";
 import { useNavigate } from "react-router-dom";
-const NewSite = () => {
+import validator from "validator";
+const NewSite = ({ title, setTitle }) => {
   const navigate = useNavigate();
-  const [title, setTitle] = useState("");
   const [Email, setEmail] = useState("");
   const [isText, setIsText] = useState(false);
   const [logoText, setLogoText] = useState("");
@@ -29,6 +29,7 @@ const NewSite = () => {
   const [SocialLink3, setSocialLink3] = useState("");
   const [SocialLink4, setSocialLink4] = useState("");
   const [SocialLink5, setSocialLink5] = useState("");
+  const [error, setError] = useState("");
 
   useEffect(() => {
     setColorArray(mappingColors(color));
@@ -65,6 +66,59 @@ const NewSite = () => {
     color: colorArray,
     font,
   };
+  const english = /^[A-Za-z0-9]*$/;
+
+  const errorHandler = async () => {
+    if (
+      !title.length ||
+      !Email.length ||
+      !HomePageHeadline.length ||
+      !HomePageText.length ||
+      !AboutPageHeadline.length ||
+      !AboutPageText.length ||
+      !(
+        SocialLink1.length ||
+        SocialLink2.length ||
+        SocialLink3.length ||
+        SocialLink4.length ||
+        !SocialLink5.length
+      )
+    ) {
+      return setError("Please fill all the fields");
+    }
+    if (!validator.isEmail(Email)) {
+      return setError("Please enter a valid email");
+    }
+    if (!english.test(title)) {
+      return setError("Please enter a valid title");
+    }
+    if (!isText && !validator.isURL(logoURL)) {
+      return setError("Please enter a valid url");
+    }
+    if (!validator.isURL(HomePageImg)) {
+      return setError("Please enter a valid url");
+    }
+    const check = await getSite(
+      title,
+      JSON.parse(localStorage.getItem("userData")).userName
+    );
+    if (check.status === 200) {
+      return setError("site title already exists");
+    }
+    submit();
+  };
+  const submit = async () => {
+    await addSite(newSite).then((res) => {
+      if (res.response) {
+        const errors = res.response.data.errors;
+        Object.entries(errors).map(([key, value]) => {
+          return setError(value.message);
+        });
+      } else {
+        navigate("/newSiteCreated", { siteName: title });
+      }
+    });
+  };
   return (
     <div className={isMobile ? "mobilePage" : "page"}>
       <div id="NewSite" className="page col">
@@ -73,7 +127,7 @@ const NewSite = () => {
           <div id="newSiteForm">
             <h1>Create a new site</h1>
             <h4>title</h4>
-            <p></p>
+            <p className="errorInputMsg">{error}</p>
             <input
               type="text"
               placeholder="title"
@@ -249,13 +303,13 @@ const NewSite = () => {
               </div>
               <div
                 className={
-                  buttonText !== "Contect Us"
+                  buttonText !== "Contact Us"
                     ? "switchOff switchOption"
                     : "switchOn switchOption"
                 }
-                onClick={() => setButtonText("Contect Us")}
+                onClick={() => setButtonText("Contact Us")}
               >
-                Contect Us
+                Contact Us
               </div>
             </div>
             <h4>About Page</h4>
@@ -307,31 +361,7 @@ const NewSite = () => {
               value={SocialLink5}
               onChange={(e) => setSocialLink5(e.target.value)}
             />
-            <button
-              onClick={async () => {
-                const check = await getSite(
-                  title,
-                  JSON.parse(localStorage.getItem("userData")).userName
-                );
-                console.log(check);
-                if (check.status !== 200) {
-                  await addSite(newSite).then((res) => {
-                    console.log(res);
-                    if (res.response) {
-                      const errors = res.response.data.errors;
-                      Object.entries(errors).map(([key, value]) => {
-                        alert(value.message);
-                      });
-                    } else {
-                      alert("Site added successfully");
-                    }
-                  });
-                } else {
-                  alert("Site already exists");
-                }
-              }}
-              className="createBtn"
-            >
+            <button onClick={errorHandler} className="createBtn">
               Create my site
             </button>
           </div>

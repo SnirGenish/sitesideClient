@@ -28,7 +28,11 @@ const LandingHomePage = () => {
     if (isMobile) {
       return (
         <div
-          style={{ backgroundColor: data.color[6], height: window.innerHeight }}
+          style={{
+            backgroundColor: data.color[6],
+            height: window.innerHeight,
+            fontFamily: data.font,
+          }}
           className="page relative col"
           id="LandingHomePageMobile"
         >
@@ -50,8 +54,8 @@ const LandingHomePage = () => {
                   <LandingButton colorData={data.color} type="About" />
                 </Link>
 
-                <Link to={`/${data.username}/${data.title}/contectUs`}>
-                  <LandingButton colorData={data.color} type="Contect us" />
+                <Link to={`/${data.username}/${data.title}/contactUs`}>
+                  <LandingButton colorData={data.color} type={"Contact us"} />
                 </Link>
               </div>
               <div id="LandingSocialMobilePlaceHolder"></div>
@@ -78,7 +82,11 @@ const LandingHomePage = () => {
     } else {
       return (
         <div
-          style={{ backgroundColor: data.color[6], height: window.innerHeight }}
+          style={{
+            backgroundColor: data.color[6],
+            height: window.innerHeight,
+            fontFamily: data.font,
+          }}
           className="page col"
           id="LandingHomePageDesk"
         >
@@ -97,7 +105,11 @@ const LandingHomePage = () => {
                   {data.homeContent.subTitle}
                 </h3>
                 <p style={{ color: data.color[0] }}>{data.homeContent.text}</p>
-                <Link to={`/${data.username}/${data.title}/about`}>
+                <Link
+                  to={`/${data.username}/${
+                    data.title
+                  }/${data.homeContent.buttonLabel.replace(/\s+/g, "")}`}
+                >
                   <LandingButton
                     colorData={data.color}
                     type={data.homeContent.buttonLabel}

@@ -13,11 +13,17 @@ const NavLanding = ({ data }) => {
         <LandingLogo LogoData={data.logo} colorData={data.color} />
       </Link>
       <ul style={{ color: data.color[0] }} id="NavLandingUl" className="row">
-        <Link to={`/${data.username}/${data.title}/about`}>
+        <Link
+          style={{ color: data.color[0] }}
+          to={`/${data.username}/${data.title}/about`}
+        >
           <li>About</li>
         </Link>
-        <Link to={`/${data.username}/${data.title}/contectUs`}>
-          <li>Contect us</li>
+        <Link
+          style={{ color: data.color[0] }}
+          to={`/${data.username}/${data.title}/contactUs`}
+        >
+          <li>Contact us</li>
         </Link>
       </ul>
       <div className="cont">
