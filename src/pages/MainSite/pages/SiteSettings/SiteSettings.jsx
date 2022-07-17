@@ -8,6 +8,7 @@ import { mappingColors } from "../../../../util/util";
 import validator from "validator";
 import { getSite, addSite, updateSite } from "../../../../api/siteApi";
 import Spinner from "../../components/Spinner/Spinner";
+import { Helmet } from "react-helmet";
 const SiteSettings = () => {
   const userName = JSON.parse(localStorage.getItem("userData")).userName;
   const url = document.URL;
@@ -142,6 +143,9 @@ const SiteSettings = () => {
   } else {
     return (
       <div className={isMobile ? "mobilePage" : "page"}>
+        <Helmet>
+          <title>Siteside | {title}</title>
+        </Helmet>
         <div id="NewSite" className="page col">
           <NavBar />
           <main className="col alignCenter sprade">

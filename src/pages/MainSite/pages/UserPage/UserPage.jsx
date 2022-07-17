@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { getUser, logOut } from "../../../../api/userApi";
 import { useEffect, useState } from "react";
 import Spinner from "../../components/Spinner/Spinner";
+import { Helmet } from "react-helmet";
 const UserPage = () => {
   const [sites, setSites] = useState([]);
   const [spinning, setSpinning] = useState(false);
@@ -69,6 +70,9 @@ const UserPage = () => {
   }, []);
   return (
     <div className={isMobile ? "mobilePage" : "page"}>
+      <Helmet>
+        <title>Siteside | {loggedIn.userName}</title>
+      </Helmet>
       <NavBar />
       <div id="UserPage" className="page col">
         {spinning ? (

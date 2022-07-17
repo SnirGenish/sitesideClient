@@ -7,7 +7,7 @@ import LandingBackBtn from "../../components/LandingBackBtn/LandingBackBtn";
 import NavLandingSocial from "../../components/LandingSocial/LandingSocial";
 import NavLanding from "../../components/NavLanding/NavLanding";
 import LandingButton from "../../components/LandingButton/LandingButton";
-import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 const LandingContactPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
@@ -39,6 +39,9 @@ const LandingContactPage = () => {
           className="page relative col"
           id="LandingHomePageMobile"
         >
+          <Helmet>
+            <title>{data.title} | contact us</title>
+          </Helmet>
           <main className="col sprade" id="MainLanding">
             <div className="mobileSprade">
               <div
@@ -95,6 +98,9 @@ const LandingContactPage = () => {
           className="page col"
           id="LandingHomePageDesk"
         >
+          <Helmet>
+            <title>{data.title} | contact us</title>
+          </Helmet>
           <NavLanding data={data} />
           <main className="row sprade" id="MainLanding">
             <div className="sprade">

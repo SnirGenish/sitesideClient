@@ -1,8 +1,20 @@
 #MainLandingText {
   padding: 10%;
 }
+#MainLandingText p {
+  font-size: 0.8em;
+}
 #MainLandingText h1 {
-  font-size: 1.8rem;
+  font-size: 1.9rem;
+}
+@media screen and (max-width: 768px) {
+  #MainLandingText h1 {
+    font-size: 1.5rem;
+  }
+}
+
+#MainLandingText h3 {
+  font-size: 1rem;
 }
 
 #MainLandingImg {

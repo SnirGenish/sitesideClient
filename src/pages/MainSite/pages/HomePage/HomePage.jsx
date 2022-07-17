@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import Spinner from "../../components/Spinner/Spinner";
 import { useState } from "react";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet";
 const HomePage = () => {
   const loggedIn = localStorage.getItem("userData");
   const [isSpinning, setIsSpinning] = useState(true);
@@ -15,6 +16,9 @@ const HomePage = () => {
   }, []);
   return (
     <div className={isMobile ? "mobilePage" : "page"}>
+      <Helmet>
+        <title>Siteside | Home</title>
+      </Helmet>
       <div id="HomePage" className="page column">
         <NavBar />
         {isSpinning ? (

@@ -7,6 +7,7 @@ import { mappingColors } from "../../../../util/util";
 import { useEffect } from "react";
 import { addSite, getSite } from "../../../../api/siteApi";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import validator from "validator";
 const NewSite = ({ title, setTitle }) => {
   const navigate = useNavigate();
@@ -121,6 +122,9 @@ const NewSite = ({ title, setTitle }) => {
   };
   return (
     <div className={isMobile ? "mobilePage" : "page"}>
+      <Helmet>
+        <title>Siteside | New Site</title>
+      </Helmet>
       <div id="NewSite" className="page col">
         <NavBar />
         <main className="col alignCenter sprade">

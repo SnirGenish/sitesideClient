@@ -5,6 +5,7 @@ import Spinner from "../../../MainSite/components/Spinner/Spinner";
 import LandingBackBtn from "../../components/LandingBackBtn/LandingBackBtn";
 import NavLandingSocial from "../../components/LandingSocial/LandingSocial";
 import NavLanding from "../../components/NavLanding/NavLanding";
+import { Helmet } from "react-helmet";
 const LandingAboutPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
@@ -33,6 +34,9 @@ const LandingAboutPage = () => {
           className="page relative col"
           id="LandingHomePageMobile"
         >
+          <Helmet>
+            <title>{data.title} | About </title>
+          </Helmet>
           <main className="col sprade" id="MainLanding">
             <div className="mobileSprade">
               <div
@@ -72,6 +76,9 @@ const LandingAboutPage = () => {
           className="page col"
           id="LandingHomePageDesk"
         >
+          <Helmet>
+            <title>{data.title} | About</title>
+          </Helmet>
           <NavLanding data={data} />
           <main className="row sprade" id="MainLanding">
             <div className="sprade">

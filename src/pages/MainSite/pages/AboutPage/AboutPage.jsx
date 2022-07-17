@@ -1,10 +1,14 @@
 import BackGround from "../../components/BackGround/BackGround";
 import NavBar from "../../components/NavBar/NavBar";
 import "./AboutPage.css";
+import { Helmet } from "react-helmet";
 import { isMobile } from "react-device-detect";
 const AboutPage = () => {
   return (
     <div className={isMobile ? "mobilePage" : "page"}>
+      <Helmet>
+        <title>Siteside | About</title>
+      </Helmet>
       <div id="AboutPage" className="page column">
         <NavBar />
         <main className="col sprade  alignCenter mainMain">

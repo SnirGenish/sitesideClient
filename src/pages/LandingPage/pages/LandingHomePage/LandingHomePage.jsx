@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { getSite } from "../../../../api/siteApi";
 import Spinner from "../../../MainSite/components/Spinner/Spinner";
-
+import { Helmet } from "react-helmet";
 const LandingHomePage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const [data, setData] = useState({});
@@ -36,6 +36,9 @@ const LandingHomePage = () => {
           className="page relative col"
           id="LandingHomePageMobile"
         >
+          <Helmet>
+            <title>{data.title}</title>
+          </Helmet>
           <main className="colReverse sprade" id="MainLanding">
             <div className="mobileSprade">
               <div
@@ -90,6 +93,9 @@ const LandingHomePage = () => {
           className="page col"
           id="LandingHomePageDesk"
         >
+          <Helmet>
+            <title>{data.title}</title>
+          </Helmet>
           <NavLanding data={data} />
           <main className="row sprade" id="MainLanding">
             <div className="sprade">
